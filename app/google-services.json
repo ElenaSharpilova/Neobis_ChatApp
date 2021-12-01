@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "396154743690",
+    "project_id": "neochatapp-4e417",
+    "storage_bucket": "neochatapp-4e417.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396154743690:android:bcf5bacf0684cd24877673",
+        "android_client_info": {
+          "package_name": "android.example.neochatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396154743690-hin0unrt0rembbiokiumc60m6nev8rsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMvxHHUj2D9tn-oGwiDbwRAAEe6Y_Ct1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396154743690-hin0unrt0rembbiokiumc60m6nev8rsf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">NeoChatApp</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="type_number">Введите номер</string>
+    <string name="continue_text">Продолжить</string>
+    <string name="submit">Зарегестрироваться</string>
+    <string name="code">Введите код</string>
+    <string name="verification_code">Верификационный код</string>
+    <string name="view_all_contacts">Все контакты</string>
+    <string name="default_notification_channel_id">....</string>
+</resources>
