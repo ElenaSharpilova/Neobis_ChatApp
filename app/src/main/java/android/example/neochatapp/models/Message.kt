@@ -7,6 +7,7 @@ data class Message(
     var text: String = "",
     var time: Timestamp = Timestamp.now(),
     //var time:Long = 0,
+    val isHave: Boolean = false,
     var senderId: String= "")
     : Serializable {
 }

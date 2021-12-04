@@ -80,7 +80,7 @@ class MessagesAdapter(val context: Context):
             binding.receivedMessage.text = message.text
             val dateTime = Calendar.getInstance()
             dateTime.time = message.time.toDate()
-            binding.receivedMessage.text = "${dateTime.get(Calendar.HOUR_OF_DAY)}: ${dateTime.get(Calendar.MINUTE)}"
+            binding.receivedTime.text = "${dateTime.get(Calendar.HOUR_OF_DAY)}: ${dateTime.get(Calendar.MINUTE)}"
         }
     }
 

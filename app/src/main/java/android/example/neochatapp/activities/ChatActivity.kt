@@ -30,11 +30,10 @@ class ChatActivity : AppCompatActivity() {
     lateinit var binding:ActivityChatBinding
     private var chat: Chat? = null
     private var user: User? = null
-    private val myId: String = FirebaseAuth.getInstance().uid.toString()
+    private val myId = FirebaseAuth.getInstance().uid
     private val messageList = ArrayList<Message>()
     private val adapter by lazy { MessagesAdapter(this) }
     private var chatExist: Boolean = false
-    //val TAG = "ChatActivity"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +55,7 @@ class ChatActivity : AppCompatActivity() {
                 supportActionBar?.title = user?.name
             }
         } else if (user == null) {
+            isHave()
             getMessages()
             initRecyclerView()
             FirebaseFirestore.getInstance().collection("users")
@@ -83,6 +83,11 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+
     private fun exist(userIds: ArrayList<String>): Boolean {
         FirebaseFirestore.getInstance().collection("chats")
             .whereEqualTo("userIds", userIds)
@@ -100,6 +105,25 @@ class ChatActivity : AppCompatActivity() {
                 chatExist = false
             }
         return chatExist
+    }
+
+    private fun isHave() {
+        val ids = chat?.userIds as MutableList
+        ids.remove(myId)
+        val userName = ids[0]
+
+        FirebaseFirestore.getInstance().collection("chats")
+            .document(chat?.id.toString())
+            .collection("messages")
+            .whereEqualTo("senderId", userName)
+            .get()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    for (doc in it.result!!) {
+                        doc.reference.update("isSeen", true)
+                    }
+                }
+            }
     }
 
     private fun getMessages() {
@@ -155,6 +179,7 @@ class ChatActivity : AppCompatActivity() {
         val map: MutableMap<String, Any> = HashMap()
         map["text"] = text
         map["senderId"] = myId.toString()
+        map["isHave"] = false
         map["time"] = FieldValue.serverTimestamp()
 
         FirebaseFirestore.getInstance().collection("chats").document(chat?.id!!)

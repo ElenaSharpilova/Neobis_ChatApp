@@ -53,6 +53,11 @@ class MainActivity : AppCompatActivity(), RecyclerItemClicked {
             }
     }
 
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+
     private fun getUserList() {
         binding.apply {
             recyclerViewMain.layoutManager = LinearLayoutManager(this@MainActivity)
